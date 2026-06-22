@@ -2,8 +2,26 @@ import bannerImg from "/Images/banner.jpg"
 import { Link } from "react-router-dom"
 import { AllProductDataApi } from "../API/ProductApi"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { CartContext } from "../Context/CartContext"
 const ProductDetails = () => {
+  
+
+  const { cartItem, setCartItem } = useContext(CartContext);
+  const handleAddToCart = () => {
+   setCartItem((prev) => [
+    ...prev,
+    {
+      ...proDetails,
+      quantity: 1,
+    },
+  ]);
+};
+  useEffect(() => {
+    // console.log("Cart Changed:", cartItem);
+  }, [cartItem]);
+
+
   const { id } = useParams();
 
   const [proDetails, setProDetails] = useState(null);
@@ -16,10 +34,11 @@ const ProductDetails = () => {
       const singleProduct = item.find(
         (e) => e.id === Number(id)
       );
-
+   
       setProDetails(singleProduct);
     });
   }, [id]);
+
 
   if (!proDetails) {
     return <h2>Loading...</h2>;
@@ -37,6 +56,7 @@ const ProductDetails = () => {
   return (
     <>
       <div>
+
         <img src={bannerImg} alt="" width={"100%"} height={"100%"} style={{ height: "100vh" }} />
         <div className="container">
           <div className="row align-items-center">
@@ -61,7 +81,12 @@ const ProductDetails = () => {
                 </div>
                 <div className="d-flex justify-content-between mt-3">
                   <Link to="" className="text-decoration-none bg-primary text-white fw-bold px-5 py-2 rounded">Buy Now</Link>
-                  <Link to="#" className="text-decoration-none bg-white border-primary text-primary border fw-bold px-5 py-2 rounded">Add To Cart</Link>
+                  <button
+                    onClick={handleAddToCart}
+                    className="bg-white border-primary text-primary border fw-bold px-5 py-2 rounded"
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             </div>
@@ -97,7 +122,12 @@ const ProductDetails = () => {
 
                       <div className="d-flex justify-content-between mt-3">
                         <Link to={`/product/${data.id}`} className="text-decoration-none bg-primary text-white fw-bold px-5 py-2 rounded">Buy Now</Link>
-                        <Link to="#" className="text-decoration-none bg-white border-primary text-primary border fw-bold px-5 py-2 rounded">Add To Cart</Link>
+                        {/* <button
+                          onClick={() => handleAddToCart(data)}
+                          className="bg-white border-primary text-primary border fw-bold px-5 py-2 rounded"
+                        >
+                          Add To Cart
+                        </button> */}
                       </div>
                     </div>
 

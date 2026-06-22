@@ -5,16 +5,19 @@ import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import ProductDetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
+import { CartProvider } from "./Context/CartContext";
 
 export default function App() {
   return (
     <BrowserRouter>
-    <Navbar/>
+   <CartProvider>
+     <Navbar/>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/product/:id" element={<ProductDetails/>}/>
         <Route path="/cart" element={<Cart/>}/>
       </Routes>
+   </CartProvider>
     </BrowserRouter>
   );
 }

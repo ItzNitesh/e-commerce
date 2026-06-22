@@ -1,6 +1,11 @@
+import { useContext } from 'react'
 import logo from '/Images/dummy-logo.png'
+import { CartContext } from '../Context/CartContext'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+
+  const {cartItem}=useContext(CartContext)
   return (
     <>
       <div className="mini-nav">
@@ -10,9 +15,9 @@ const Navbar = () => {
             <a href="#"><i className="fa-solid fa-envelope"></i> nitesh@gmail.com</a>
           </div>
           <div className="d-flex gap-4">
-            <a href="#"><i className="fa-regular fa-user"></i> Login</a>
-            <a href="#"><i className="fa-solid fa-right-from-bracket"></i> Sign-Up</a>
-            <a href="cart"><i className="fa-solid fa-cart-flatbed"></i> Cart <sup>1</sup></a>
+            <Link href="#"><i className="fa-regular fa-user"></i> Login</Link>
+            <Link href="#"><i className="fa-solid fa-right-from-bracket"></i> Sign-Up</Link>
+            <Link to="/cart"><i className="fa-solid fa-cart-flatbed"></i> Cart <sup>({cartItem.length})</sup></Link>
           </div>
         </div>
       </div>
