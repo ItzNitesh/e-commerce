@@ -34,22 +34,22 @@ const Cart = () => {
     setCartItem(updatedCart);
   };
 
-const handleDecreaseQuantity = (id) => {
-  const updatedCart = cartItem.map((item) => {
-    if (item.id === id) {
-      return {
-        ...item,
-        quantity: item.quantity > 1
-          ? item.quantity - 1
-          : 1,
-      };
-    }
+  const handleDecreaseQuantity = (id) => {
+    const updatedCart = cartItem.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity > 1
+            ? item.quantity - 1
+            : 1,
+        };
+      }
 
-    return item;
-  });
+      return item;
+    });
 
-  setCartItem(updatedCart);
-};
+    setCartItem(updatedCart);
+  };
 
   // quantity
 
@@ -64,25 +64,26 @@ const handleDecreaseQuantity = (id) => {
 
   return (
     <>
-      <img src={bannerImg} alt="" width={"100%"} height={"100%"} style={{ height: "100vh" }} />
+      <img src={bannerImg} alt="" width={"100%"} height={"100%"} style={{ height: "100vh" }} className="prodcut-banner" />
 
       <div className="container py-5">
         <h1 className="text-center">Your Cart Item Here</h1>
         <div className="table-responsive">
-          {
+          <table className="table table-bordered table-striped" style={{width:"1220px"}}>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quanity</th>
+                <th>Total</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            {
 
-            cartItem.map((item) => (
-              <table className="table table-bordered table-striped" key={item.id}>
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quanity</th>
-                    <th>Total</th>
-                    <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
+              cartItem.map((item) => (
+
+                <tbody key={item.id}>
 
                   <tr >
                     <td>
@@ -94,10 +95,10 @@ const handleDecreaseQuantity = (id) => {
 
                     <td>₹ {(item.price * item.quantity).toFixed(2)}</td>
 
-                    <td>
+                    <td className="d-flex">
                       <button style={{ width: "30px", height: "30px" }} onClick={() => handleIncreaseQuantity(item.id)}>+</button>
                       <button style={{ width: "30px", height: "30px" }}>{item.quantity}</button>
-                      <button style={{ width: "30px", height: "30px" }} onClick={()=>handleDecreaseQuantity(item.id)}>-</button>
+                      <button style={{ width: "30px", height: "30px" }} onClick={() => handleDecreaseQuantity(item.id)}>-</button>
                     </td>
 
                     <td>₹ {(item.price * item.quantity).toFixed(2)}</td>
@@ -105,13 +106,15 @@ const handleDecreaseQuantity = (id) => {
                   </tr>
 
                 </tbody>
-              </table>
-            ))
-          }
-          <div>
+
+              ))
+            }
+            </table>
+          
+        </div>
+        <div>
             <h3>Total Price Is: ₹ {totalPrice.toFixed(2)}</h3>
           </div>
-        </div>
       </div>
     </>
   )

@@ -57,11 +57,11 @@ const ProductDetails = () => {
     <>
       <div>
 
-        <img src={bannerImg} alt="" width={"100%"} height={"100%"} style={{ height: "100vh" }} />
+        <img src={bannerImg} alt="" width={"100%"} height={"100%"} style={{ height: "100vh" }} className="prodcut-banner"/>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-xl-6 mt-3">
-              <img src={proDetails.image} alt="" />
+              <img src={proDetails.image} alt="" width={"100%"}/>
             </div>
             <div className="col-xl-6">
               <div>

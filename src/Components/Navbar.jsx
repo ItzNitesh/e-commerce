@@ -10,11 +10,13 @@ const Navbar = () => {
     <>
       <div className="mini-nav">
         <div className="container d-flex justify-content-between">
-          <div className="d-flex gap-4">
-            <a href="#"><i className="fa-solid fa-phone"></i> +91 9599593094</a>
+          <div className=" d-none d-xl-block d-lg-block d-md-block">
+            <div className='d-flex gap-4'>
+              <a href="#"><i className="fa-solid fa-phone"></i> +91 9599593094</a>
             <a href="#"><i className="fa-solid fa-envelope"></i> nitesh@gmail.com</a>
+            </div>
           </div>
-          <div className="d-flex gap-4">
+          <div className="d-flex gap-4 justify-content-between">
             <Link href="#"><i className="fa-regular fa-user"></i> Login</Link>
             <Link href="#"><i className="fa-solid fa-right-from-bracket"></i> Sign-Up</Link>
             <Link to="/cart"><i className="fa-solid fa-cart-flatbed"></i> Cart <sup>({cartItem.length})</sup></Link>
